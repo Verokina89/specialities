@@ -74,7 +74,7 @@ app.get('/', (req, res) => {
           <title>ESPECIALISTAS</title>
         </head>
         <body>
-          <h1>Home</h1>
+          <h1>🏘️  Home</h1>
           <p>Especialidad: ${req.path}</p>
           <nav>
             <a href="/marketing">Marketing</a>
@@ -102,7 +102,7 @@ app.get('/marketing', (req, res) => {
           <title>Marketing - Especialistas.</title>
         </head>
         <body>
-          <h1>Especializados en Marketing</h1>
+          <h1>👩🏽‍💼 Especializados en Marketing.</h1>
           <p>Usuarios Especializados en: ${req.path}</p>
           <ol>
             ${users.map(user => `<li>${user.name}, ${user.age} años</li>`).join('')}
@@ -133,7 +133,7 @@ app.get('/developers', (req, res) => {
           <title>Developers</title>
         </head>
         <body>
-          <h1>Desarrolladores Especializados</h1>
+          <h1>👩🏽‍💻 Desarrolladores Especializados.</h1>
           <p>Usuarios Especializados en: ${req.path}</p>
           <ol>
           ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
@@ -160,10 +160,10 @@ app.get('/ventas', (req, res) => {
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>ESPECIALISTAS</title>
+          <title>Ventas</title>
         </head>
         <body>
-          <h1>Especializados en Ventas.</h1>
+          <h1>👩🏽 Especializados en Ventas.</h1>
           <p>Usuarios Especializados en: ${req.path}</p>
           <ol>
             ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
@@ -171,7 +171,7 @@ app.get('/ventas', (req, res) => {
           <nav>
             <a href="/">Home</a>
             <a href="/marketing">Marketing</a>
-            <a href="/developers">Ventas</a>
+            <a href="/developers">Developers</a>
             <a href="/QAs">QAs</a>
             <a href="/about">About</a>
           </nav>
@@ -191,10 +191,10 @@ app.get('/QAs', (req, res) => {
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>ESPECIALISTAS</title>
+          <title>🤓 QAs</title>
         </head>
         <body>
-          <h1>Listado de Usuarios</h1>
+          <h1>Especalizados SQAs.</h1>
           <p>Usuarios Especializados en: ${req.path}</p>
           <ol>
             ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
@@ -223,7 +223,7 @@ app.use((req, res) => {
         <title>Error de Página.</title>
       </head>
       <body>
-        <h1>Error 404. Página no encontrada</h1>
+        <h1>⚠️  Error 404. Página no encontrada  ⚠️</h1>
         <p>Puedes acceder a los siguientes enlaces: ${req.path}</p>
           <nav>
             <a href="/">Home</a>
