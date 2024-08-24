@@ -19,7 +19,7 @@ const path = require('path')
 //Middlewar;registrar el path de cada solicitud.Visualizar el path en la terminal.
 app.use((req, res, next) => {
   const parsePath = path.parse(req.path);
-    console.log('URL requerida: ', parsePath);
+    console.log('URL requerida: ', req.url);
     next();
 });
 
@@ -56,7 +56,7 @@ const usersData = [
   { id: 30, name: 'Derek', age: 30, specialty: 'marketing' },
 ];
 
-//filtrado por especialidad. array que contendra solo los usuarios con especialidad que coincida con la proporcionada.
+//filtrado por especialidad. array que contendra solo los usuarios con especialidad requerida
 const useredSpecialty = (user, specialty) => {
   const usersData = user.filter(user => user.specialty === specialty);
   return usersData;
@@ -82,7 +82,7 @@ app.get('/', (req, res) => {
             <a href="/ventas">Ventas</a>
             <a href="/QAs">QAs</a>
             <a href="/about">About</a>
-          </nav
+          </nav>
         </body>
         </html>
     `); 
@@ -92,7 +92,7 @@ app.get('/', (req, res) => {
 //ruta page marketing.
 app.get('/marketing', (req, res) => {
   const specialPath = [...req.path].filter(item => item != "/").join('');
-  const users = useredSpecialty(usersData, 'marketing');
+  const users = useredSpecialty(usersData, 'marketing'); //filtado por especialidad
     res.send(`
         <!DOCTYPE html>                                                                         
         <html lang="es">
@@ -103,7 +103,7 @@ app.get('/marketing', (req, res) => {
         </head>
         <body>
           <h1>Especializados en Marketing</h1>
-          <p>Usuarios por Especialidad: ${req.path}</p>
+          <p>Usuarios Especializados en: ${req.path}</p>
           <ol>
             ${users.map(user => `<li>${user.name}, ${user.age} años</li>`).join('')}
           </ol>
@@ -113,7 +113,7 @@ app.get('/marketing', (req, res) => {
             <a href="/ventas">Ventas</a>
             <a href="/QAs">QAs</a>
             <a href="/about">About</a>
-          </nav
+          </nav>
         </body>
         </html>
     `); 
@@ -134,7 +134,7 @@ app.get('/developers', (req, res) => {
         </head>
         <body>
           <h1>Desarrolladores Especializados</h1>
-          <p>Usuarios por Especialidad. ${req.path}</p>
+          <p>Usuarios Especializados en: ${req.path}</p>
           <ol>
           ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
           </ol>
@@ -144,14 +144,15 @@ app.get('/developers', (req, res) => {
             <a href="/ventas">Ventas</a>
             <a href="/QAs">QAs</a>
             <a href="/about">About</a>
-          </nav
+          </nav>
         </body>
         </html>
     `); 
 });
 
 app.get('/ventas', (req, res) => {
-  const path = [...req.path].filter(item => item != "/").join('');
+  const specialPath = [...req.path].filter(item => item != "/").join('');
+  const users = useredSpecialty(usersData, 'ventas'); //filtrado  por especialidad
   // console.log(req);
     res.send(`
         <!DOCTYPE html>
@@ -162,15 +163,18 @@ app.get('/ventas', (req, res) => {
           <title>ESPECIALISTAS</title>
         </head>
         <body>
-          <h1>Listado de Usuarios</h1>
-          <p>Usuarios por Especialidad. ${req.path}</p>
+          <h1>Especializados en Ventas.</h1>
+          <p>Usuarios Especializados en: ${req.path}</p>
+          <ol>
+            ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
+          </ol>
           <nav>
             <a href="/">Home</a>
             <a href="/marketing">Marketing</a>
             <a href="/developers">Ventas</a>
             <a href="/QAs">QAs</a>
             <a href="/about">About</a>
-          </nav
+          </nav>
         </body>
         </html>
     `); 
@@ -178,7 +182,8 @@ app.get('/ventas', (req, res) => {
 
 
 app.get('/QAs', (req, res) => {
-  const path = [...req.path].filter(item => item != "/").join('');
+  const specialPath = [...req.path].filter(item => item != "/").join('');
+  const users = useredSpecialty(usersData, 'QAs'); //filtrado por especialidad
   // console.log(req);
     res.send(`
         <!DOCTYPE html>
@@ -190,14 +195,17 @@ app.get('/QAs', (req, res) => {
         </head>
         <body>
           <h1>Listado de Usuarios</h1>
-          <p>Usuarios por Especialidad. ${req.path}</p>
+          <p>Usuarios Especializados en: ${req.path}</p>
+          <ol>
+            ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
+          </ol>
           <nav>
             <a href="/">Home</a>
             <a href="/marketing">Marketing</a>
             <a href="/developers">Developers</a>
             <a href="/ventas">Ventas</a>
             <a href="/about">About</a>
-          </nav
+          </nav>
         </body>
         </html>
     `); 
