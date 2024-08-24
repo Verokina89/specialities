@@ -9,7 +9,7 @@ Una vez clonado el ejercico deberás hacer `npm install` en terminal para instal
 ## Objetivo del Ejercicio
 
 1. Ejecución del Ejercicio:
-  - Crea un archivo llamado `app.js` donde irá tu código.
+  - Crea un archivo llamado `app.js` donde irá tu código. //OK
 
 2. Creación del Servidor:
   - Configura un servidor Express.
