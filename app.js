@@ -13,8 +13,8 @@ http://localhost:3000/developers
 
 const express = require('express');
 const app = express();
-const PORT = 3001;
-const path = require('path')
+const PORT = 3000;
+const path = require('path');
   
 //Middlewar;registrar el path de cada solicitud.Visualizar el path en la terminal.
 app.use((req, res, next) => {
@@ -93,6 +93,7 @@ app.get('/', (req, res) => {
 app.get('/marketing', (req, res) => {
   const specialPath = [...req.path].filter(item => item != "/").join('');
   const users = useredSpecialty(usersData, 'marketing'); //filtado por especialidad
+  const userlength = users.length;
     res.send(`
         <!DOCTYPE html>                                                                         
         <html lang="es">
@@ -103,7 +104,7 @@ app.get('/marketing', (req, res) => {
         </head>
         <body>
           <h1>👩🏽‍💼 Especializados en Marketing.</h1>
-          <p>Usuarios Especializados en: ${req.path}</p>
+          <p>Usuarios Especializados en: ${req.path} ( ${userlength} )</p>
           <ol>
             ${users.map(user => `<li>${user.name}, ${user.age} años</li>`).join('')}
           </ol>
@@ -123,7 +124,7 @@ app.get('/marketing', (req, res) => {
 app.get('/developers', (req, res) => {
   const specialPath = [...req.path].filter(item => item != "/").join('');
   const users = useredSpecialty(usersData, 'developers'); //filtr por especialidad.
-  // console.log(req);
+  const userlength = users.length;
     res.send(`
         <!DOCTYPE html>
         <html lang="es">
@@ -134,7 +135,7 @@ app.get('/developers', (req, res) => {
         </head>
         <body>
           <h1>👩🏽‍💻 Desarrolladores Especializados.</h1>
-          <p>Usuarios Especializados en: ${req.path}</p>
+          <p>${req.path} ( ${userlength} ) </p>
           <ol>
           ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
           </ol>
@@ -153,7 +154,7 @@ app.get('/developers', (req, res) => {
 app.get('/ventas', (req, res) => {
   const specialPath = [...req.path].filter(item => item != "/").join('');
   const users = useredSpecialty(usersData, 'ventas'); //filtrado  por especialidad
-  // console.log(req);
+  const userlength = users.length;
     res.send(`
         <!DOCTYPE html>
         <html lang="es">
@@ -164,7 +165,7 @@ app.get('/ventas', (req, res) => {
         </head>
         <body>
           <h1>👩🏽 Especializados en Ventas.</h1>
-          <p>Usuarios Especializados en: ${req.path}</p>
+          <p>Usuarios Especializados en: ${req.path} ( ${userlength} )</p>
           <ol>
             ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
           </ol>
@@ -180,10 +181,10 @@ app.get('/ventas', (req, res) => {
     `); 
 });
 
-
 app.get('/QAs', (req, res) => {
   const specialPath = [...req.path].filter(item => item != "/").join('');
-  const users = useredSpecialty(usersData, 'QAs'); //filtrado por especialidad
+  const users = useredSpecialty(usersData, 'QAs'); //filtrado por especialidad.
+  const userlength = users.length;
   // console.log(req);
     res.send(`
         <!DOCTYPE html>
@@ -195,7 +196,7 @@ app.get('/QAs', (req, res) => {
         </head>
         <body>
           <h1>Especalizados SQAs.</h1>
-          <p>Usuarios Especializados en: ${req.path}</p>
+          <p>Usuarios Especializados en: ${req.path} ( ${userlength} )</p>
           <ol>
             ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
           </ol>
