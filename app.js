@@ -64,7 +64,7 @@ const useredSpecialty = (user, specialty) => {
   
 //ruta principal Home.
 app.get('/', (req, res) => {
-  const specialPath = [...req.path].filter(item => item != "/").join('');
+  
     res.send(`
         <!DOCTYPE html>
         <html lang="es">
@@ -75,7 +75,6 @@ app.get('/', (req, res) => {
         </head>
         <body>
           <h1>🏘️  Home</h1>
-          <p>Especialidad: ${req.path}</p>
           <nav>
             <a href="/marketing">Marketing</a>
             <a href="/developers">Developers</a>
@@ -86,12 +85,11 @@ app.get('/', (req, res) => {
         </body>
         </html>
     `); 
-
 });
   
 //ruta page marketing.
 app.get('/marketing', (req, res) => {
-  const specialPath = [...req.path].filter(item => item != "/").join('');
+  
   const users = useredSpecialty(usersData, 'marketing'); //filtado por especialidad
   const userlength = users.length;
     res.send(`
@@ -103,8 +101,8 @@ app.get('/marketing', (req, res) => {
           <title>Marketing - Especialistas.</title>
         </head>
         <body>
-          <h1>👩🏽‍💼 Especializados en Marketing.</h1>
-          <p>Usuarios Especializados en: ${req.path} ( ${userlength} )</p>
+          <h1>👩🏽‍💼 Marketing</h1>
+          <p>Usuarios Especializados en Makting (${userlength})</p>
           <ol>
             ${users.map(user => `<li>${user.name}, ${user.age} años</li>`).join('')}
           </ol>
@@ -122,9 +120,9 @@ app.get('/marketing', (req, res) => {
 
 //page developers
 app.get('/developers', (req, res) => {
-  const specialPath = [...req.path].filter(item => item != "/").join('');
+  
   const users = useredSpecialty(usersData, 'developers'); //filtr por especialidad.
-  const userlength = users.length;
+  const userlength = users.length; //nro de users
     res.send(`
         <!DOCTYPE html>
         <html lang="es">
@@ -134,8 +132,8 @@ app.get('/developers', (req, res) => {
           <title>Developers</title>
         </head>
         <body>
-          <h1>👩🏽‍💻 Desarrolladores Especializados.</h1>
-          <p>${req.path} ( ${userlength} ) </p>
+          <h1>👩🏽‍💻 Developers</h1>
+          <p>Usuarios Especializados en Desarrollo (${userlength} ) </p>
           <ol>
           ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
           </ol>
@@ -152,7 +150,6 @@ app.get('/developers', (req, res) => {
 });
 
 app.get('/ventas', (req, res) => {
-  const specialPath = [...req.path].filter(item => item != "/").join('');
   const users = useredSpecialty(usersData, 'ventas'); //filtrado  por especialidad
   const userlength = users.length;
     res.send(`
@@ -164,8 +161,8 @@ app.get('/ventas', (req, res) => {
           <title>Ventas</title>
         </head>
         <body>
-          <h1>👩🏽 Especializados en Ventas.</h1>
-          <p>Usuarios Especializados en: ${req.path} ( ${userlength} )</p>
+          <h1>👩🏽 Ventas.</h1>
+          <p>Usuarios Especializados en Ventas (${userlength})</p>
           <ol>
             ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
           </ol>
@@ -182,7 +179,6 @@ app.get('/ventas', (req, res) => {
 });
 
 app.get('/QAs', (req, res) => {
-  const specialPath = [...req.path].filter(item => item != "/").join('');
   const users = useredSpecialty(usersData, 'QAs'); //filtrado por especialidad.
   const userlength = users.length;
   // console.log(req);
@@ -195,8 +191,8 @@ app.get('/QAs', (req, res) => {
           <title>🤓 QAs</title>
         </head>
         <body>
-          <h1>Especalizados SQAs.</h1>
-          <p>Usuarios Especializados en: ${req.path} ( ${userlength} )</p>
+          <h1>Especalizados QAs</h1>
+          <p>Usuarios Especializados QAs (${userlength})</p>
           <ol>
             ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
           </ol>
@@ -225,7 +221,7 @@ app.use((req, res) => {
       </head>
       <body>
         <h1>⚠️  Error 404. Página no encontrada  ⚠️</h1>
-        <p>Puedes acceder a los siguientes enlaces: ${req.path}</p>
+        <p>Puedes acceder a los siguientes enlaces:</p>
           <nav>
             <a href="/">Home</a>
             <a href="/marketing">Marketing</a>
