@@ -1,16 +1,3 @@
-/*
-4. Generación de Páginas HTML:
-  - Utiliza literal string para construir páginas HTML directamente en el código..
-  - Crea una página para cada especialidad que muestre el título de la página, el número de personas y los detalles de cada usuario.
-
-5. Prueba de la Aplicación:
-  - Abre tu navegador y visita las diferentes rutas, por ejemplo:
-http://localhost:3000/marketing
-http://localhost:3000/developers
-
-  - Intenta acceder a una ruta no definida para verificar el manejo de errores 404.
-  - En la ruta "/" puedes crear una navegación que vaya a cada una de las páginas y en cada página puedes repetir esa navegación o solo un volver a home "/". */
-
 const express = require('express');
 const app = express();
 const PORT = 3000;
@@ -133,7 +120,7 @@ app.get('/developers', (req, res) => {
         </head>
         <body>
           <h1>👩🏽‍💻 Developers</h1>
-          <p>Usuarios Especializados en Desarrollo (${userlength} ) </p>
+          <p>Usuarios Especializados en Desarrollo (${userlength} )</p>
           <ol>
           ${users.map(user => `<li>${user.name} - ${user.age} años</li>`).join('')}
           </ol>
@@ -236,5 +223,5 @@ app.use((req, res) => {
 });
   
 app.listen(PORT, () => {
-  console.log(`Node.js está escuchando en el puerto ${PORT}.`)
+  console.log(`El Servidor está escuchando en el puerto http://localhost:${PORT}/`)
 });
